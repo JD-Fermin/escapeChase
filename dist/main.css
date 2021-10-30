@@ -1,6 +1,59 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-#main {
-  color: blue;
+.title-header {
+  text-align: center;
+  color: red;
+  font-family: 'Creepster', cursive;
+  font-size: 48px;
+  padding: 50px;
 }
+
+body {
+  background: black;
+}
+
+.main {
+  width: 1280px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-family: 'VT323', monospace;
+  font-size: 32px;
+}
+.main-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+#menu, #nav-links {
+  display: flex;
+  background: red;
+  border: 2px solid grey;
+  width: 200px;
+}
+
+#menu-list {
+  
+  position: relative;
+  width: 100%;
+}
+
+
+
+#nav-links img {
+  height: 32px;
+  width: 32px;
+}
+
+#main-text {
+  background: blueviolet;
+  height: 100px;
+  padding: 20px;
+  border: 2px solid grey;
+}
+
