@@ -22,28 +22,21 @@ body {
   margin: 0 auto;
   font-family: 'VT323', monospace;
   font-size: 32px;
+
 }
 .main-body {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   
 }
 
+
+
 #menu, #nav-links {
-  display: flex;
   background: red;
   border: 2px solid grey;
   width: 200px;
 }
-
-#menu-list {
-  
-  position: relative;
-  width: 100%;
-}
-
-
 
 #nav-links img {
   height: 32px;
@@ -55,5 +48,9 @@ body {
   height: 100px;
   padding: 20px;
   border: 2px solid grey;
+}
+
+.menu-list {
+  text-align: center;
 }
 
