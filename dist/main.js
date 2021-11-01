@@ -16,7 +16,7 @@
   \**********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scripts_moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/moving_object */ \"./src/scripts/moving_object.js\");\n\nwindow.MovingObject = _scripts_moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  let canvas = document.getElementById(\"game-box\");\n  let ctx = canvas.getContext(\"2d\");\n\n  // let background = new Image();\n  // background.src = \"https://image.shutterstock.com/image-vector/arcade-game-world-pixel-scene-600w-1413474734.jpg\";\n\n  ctx.fillStyle = \"gray\";\n  ctx.fillRect(0, 0, canvas.width, canvas.height);\n\n  let testPlayer = new _scripts_moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({pos: [69, 69], radius: 20});\n  testPlayer.draw(ctx);\n  \n  window.addEventListener(\"keydown\", (event) => {\n    event.preventDefault();\n    testPlayer.move(testPlayer.convertKeytoDir(event.code));\n    ctx.clearRect(0, 0, canvas.width, canvas.height);\n    ctx.fillStyle = \"gray\";\n    ctx.fillRect(0, 0, canvas.width, canvas.height);\n    testPlayer.draw(ctx);\n  });\n\n  \n})\n\n//# sourceURL=webpack://escape_chase/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scripts_moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scripts/moving_object */ \"./src/scripts/moving_object.js\");\n/* harmony import */ var _scripts_static_object__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scripts/static_object */ \"./src/scripts/static_object.js\");\n/* harmony import */ var _scripts_view__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/view */ \"./src/scripts/view.js\");\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  let canvas = document.getElementById(\"game-box\");\n  let ctx = canvas.getContext(\"2d\");\n  let testPlayer = new _scripts_moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({pos: [69, 69], radius: 20});\n  \n  // let background = new Image();\n  // background.src = \"https://image.shutterstock.com/image-vector/arcade-game-world-pixel-scene-600w-1413474734.jpg\";\n\n  // ctx.fillStyle = \"gray\";\n  // ctx.fillRect(0, 0, canvas.width, canvas.height);\n\n  // let testPlayer = new MovingObject({pos: [69, 69], radius: 20});\n  // testPlayer.draw(ctx);\n  let testView = new _scripts_view__WEBPACK_IMPORTED_MODULE_2__[\"default\"](canvas, ctx, testPlayer);\n  \n  \n  window.addEventListener(\"keydown\", (event) => {\n    event.preventDefault();\n    testPlayer.move(testPlayer.convertKeytoDir(event.code));\n    // ctx.clearRect(0, 0, canvas.width, canvas.height);\n    // ctx.fillStyle = \"gray\";\n    // ctx.fillRect(0, 0, canvas.width, canvas.height);\n    // testPlayer.draw(ctx);\n    testView.draw();\n  });\n\n  \n})\n\n//# sourceURL=webpack://escape_chase/./src/index.js?");
 
 /***/ }),
 
@@ -27,6 +27,26 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scr
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\nclass MovingObject {\n  constructor(attributes) {\n    this.pos = attributes['pos'];\n    this.radius = attributes['radius'];\n  }\n\n  draw(ctx) {\n   \n    let circle = new Path2D();\n    \n    ctx.beginPath();\n    circle.arc(this.pos[0], this.pos[1], this.radius, 0, Math.PI * 2, false);\n    ctx.fillStyle = 'green';\n    ctx.fill(circle);\n    \n  }\n\n  convertKeytoDir(code) {\n    switch (code) {\n      case \"KeyS\":\n      case \"ArrowDown\":\n        return [0, 1];\n     \n      case \"KeyW\":\n      case \"ArrowUp\":\n        return [0, -1];\n      \n      case \"KeyA\":\n      case \"ArrowLeft\":\n        return [-1, 0];\n\n      case \"KeyD\":\n      case \"ArrowRight\":\n        return [1, 0];\n    \n    }\n  }\n\n  move(dir) {\n    this.pos[0] += this.radius/2 * dir[0];\n    this.pos[1] += this.radius/2 * dir[1];\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MovingObject);\n\n//# sourceURL=webpack://escape_chase/./src/scripts/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/static_object.js":
+/*!**************************************!*\
+  !*** ./src/scripts/static_object.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\nclass StaticObject {\n  constructor(attributes) {\n    this.pos = attributes['pos'];\n    this.width = attributes['width'];\n    this.height = attributes['height'];\n    this.color = attributes['color'];\n  }\n\n  draw(ctx) {\n    let rectangle = new Path2D();\n    ctx.fillStyle = this.color;\n    ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (StaticObject);\n\n//# sourceURL=webpack://escape_chase/./src/scripts/static_object.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/view.js":
+/*!*****************************!*\
+  !*** ./src/scripts/view.js ***!
+  \*****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\nclass View {\n  constructor(canvas, ctx, player) {\n    this.canvas = canvas;\n    this.ctx = ctx;\n    this.player = player;\n    this.items = [];\n    this.draw();\n  }\n\n  draw() {\n    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);\n    this.ctx.fillStyle = \"gray\";\n    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);\n    this.player.draw(this.ctx);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (View);\n\n//# sourceURL=webpack://escape_chase/./src/scripts/view.js?");
 
 /***/ })
 
