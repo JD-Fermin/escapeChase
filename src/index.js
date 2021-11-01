@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // let background = new Image();
   // background.src = "https://image.shutterstock.com/image-vector/arcade-game-world-pixel-scene-600w-1413474734.jpg";
 
-  // ctx.fillStyle = "gray";
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "gray";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // let testPlayer = new MovingObject({pos: [69, 69], radius: 20});
-  // testPlayer.draw(ctx);
+  
+  testPlayer.draw(ctx);
   let testView = new View(canvas, ctx, testPlayer);
   
   
