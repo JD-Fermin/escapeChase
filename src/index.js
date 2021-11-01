@@ -13,5 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let testPlayer = new MovingObject({pos: [69, 69], radius: 20});
   testPlayer.draw(ctx);
   
+  window.addEventListener("keydown", (event) => {
+    event.preventDefault();
+    testPlayer.move(testPlayer.convertKeytoDir(event.code));
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "gray";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    testPlayer.draw(ctx);
+  });
+
   
 })
