@@ -1,5 +1,5 @@
 import MovingObject from "./scripts/moving_object";
-import StaticObject from "./scripts/static_object";
+
 import View from "./scripts/view";
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   window.addEventListener("keydown", (event) => {
     event.preventDefault();
-    testPlayer.move(testPlayer.convertKeytoDir(event.code));
+    testPlayer.move(testPlayer.convertKeytoDir(event.code), canvas);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // ctx.fillStyle = "gray";
     // ctx.fillRect(0, 0, canvas.width, canvas.height);

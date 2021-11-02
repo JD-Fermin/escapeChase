@@ -36,9 +36,14 @@ class MovingObject {
     }
   }
 
-  move(dir) {
-    this.pos[0] += this.radius/2 * dir[0];
-    this.pos[1] += this.radius/2 * dir[1];
+  move(dir, canvas) {
+    let dx = this.radius/2 * dir[0];
+    let dy = this.radius/2 * dir[1];
+    if(this.pos[0] + dx < canvas.width - this.radius && this.pos[0] + dx > this.radius && this.pos[1] + dy < canvas.height - this.radius && this.pos[1] + dy > this.radius) {
+      this.pos[0] += dx;
+      this.pos[1] += dy;
+    }
+   
   }
 }
 
