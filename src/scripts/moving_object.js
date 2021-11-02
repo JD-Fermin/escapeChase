@@ -1,3 +1,4 @@
+import { Utils } from "./utils.js";
 class MovingObject {
   constructor(attributes) {
     this.pos = attributes['pos'];
@@ -36,12 +37,21 @@ class MovingObject {
     }
   }
 
-  move(dir, canvas) {
+  move(dir, view) {
     let dx = this.radius/2 * dir[0];
     let dy = this.radius/2 * dir[1];
-    if(this.pos[0] + dx < canvas.width - this.radius && this.pos[0] + dx > this.radius && this.pos[1] + dy < canvas.height - this.radius && this.pos[1] + dy > this.radius) {
+    
+    if(this.pos[0] + dx < view.canvas.width - this.radius && this.pos[0] + dx > this.radius && this.pos[1] + dy < view.canvas.height - this.radius && this.pos[1] + dy > this.radius ) {
+
       this.pos[0] += dx;
       this.pos[1] += dy;
+      for (let i = 0; i < view.objs.length; i++) {
+        if (Utils.detectCollision(this, view.objs[i])){
+          this.pos[0] -= dx;
+          this.pos[1] -= dy;
+          break;
+        };
+      }
     }
    
   }

@@ -1,4 +1,5 @@
 import StaticObject from "./static_object.js";
+
 class View {
   constructor(canvas, ctx, player) {
     this.canvas = canvas;
