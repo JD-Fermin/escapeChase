@@ -1,19 +1,23 @@
-import StaticObject from "./static_object.js";
 
+import StaticObject from "./static_object.js";
+import { Utils } from "./utils.js";
 class View {
   constructor(canvas, ctx, player) {
     this.canvas = canvas;
     this.ctx = ctx;
     this.player = player;
     this.objs = [];
-    this.addObjects(5);
+    this.addObjects();
     this.draw();
     // this.player.draw(ctx);
+    
   }
 
-  addObjects(amt) {
-    while (this.objs.length < amt) {
-      this.objs.push(new StaticObject({pos: [Math.random()*this.canvas.width - 40, Math.random() *this.canvas.height - 40], width: 40, height: 40, color: 'brown'}))
+  addObjects() {
+    let i = 0;
+    while (this.objs.length < Utils.levels[1].length) {
+      this.objs.push(new StaticObject(Utils.levels[1][i]));
+      i++;
     }
   }
 
@@ -21,11 +25,24 @@ class View {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fillStyle = "gray";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.fillStyle = 'brown'
+    this.ctx.fillRect(5, 5, this.canvas.width - 11, this.canvas.height - 11);
     this.player.draw(this.ctx);
 
     for (let i = 0; i < this.objs.length; i++) {
       this.objs[i].draw(this.ctx);  
     }
+    
+  }
+
+  renderMessage() {
+    let message = document.getElementById('message');
+    let content = "Sample Message";
+    message.innerHTML = content;
+    setTimeout(()=>{
+      message.innerHTML = "Use the WSAD or arrow keys to move!"
+      // state = false;
+    }, 4000);
     
   }
 }
