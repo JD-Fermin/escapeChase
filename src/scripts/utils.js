@@ -12,6 +12,18 @@ export const Utils = {
     return (dx*dx+dy*dy<=(obj1.radius*obj1.radius));
   },
   levels: {
-    1:[{pos: [67, 97], width: 200, height: 40, color: 'pink'}, {pos: [300, 6], width: 100, height: 120, color: 'pink'}]
+    1:[{pos: [67, 97], width: 200, height: 40, color: 'pink', message: "This is a big shelf."},
+     {pos: [300, 6], width: 80, height: 120, color: 'pink', message: "Oohhh Big Brain!"},
+     {pos: [5, 386], width: 200, height: 57, color: 'pink', message: "Kill the bits"}
+    ] 
+  },
+  renderMessage: (objMessage) => {
+    let message = document.getElementById('message');
+    let content = objMessage;
+    message.innerHTML = content;
+    setTimeout(()=>{
+      message.innerHTML = "Use the WSAD or arrow keys to move!"
+    }, 4000);
+    
   } 
 };

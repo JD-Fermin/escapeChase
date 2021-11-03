@@ -1,5 +1,5 @@
 import MovingObject from "./scripts/moving_object";
-
+import { Utils } from "./scripts/utils";
 import View from "./scripts/view";
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -15,22 +15,37 @@ document.addEventListener("DOMContentLoaded", () => {
   
   testPlayer.draw(ctx);
   let testView = new View(canvas, ctx, testPlayer);
-  
-  
+  let flag = false;
+  // window.addEventListener("keydown", (event) => {
+  //   event.preventDefault()
+  //   if (event.code === 'KeyE') {
+  //     flag = true;
+  //     Utils.renderMessage();
+  //     setTimeout(() => {
+  //       flag = false
+  //     }, 4000);
+  //   }
+    
+  // });
   window.addEventListener("keydown", (event) => {
    
     event.preventDefault();
-    if (event.code === 'KeyE') {
-     
-      
-      testView.renderMessage();
-     
-    }
-
-   
     
-      testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);
+    if (event.code === 'KeyE' && testPlayer.collided) {
+      flag = true;
+      Utils.renderMessage(testPlayer.victim.message);
+      setTimeout(() => {
+        flag = false
+      }, 4000);
+    }
+    
+    if (flag === false){
+      
+      testPlayer.move(testPlayer.convertKeytoDir(event.code), testView, true);
+      console.log(testPlayer.collided, testPlayer.victim);
       testView.draw();
+      // window.requestAnimationFrame(testView.draw);
+    }
     
     // testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);

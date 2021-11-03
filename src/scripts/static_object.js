@@ -4,6 +4,7 @@ class StaticObject {
     this.width = attributes['width'];
     this.height = attributes['height'];
     this.color = attributes['color'];
+    this.message = attributes['message']
   }
 
   draw(ctx) {

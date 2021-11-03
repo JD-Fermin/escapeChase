@@ -35,16 +35,7 @@ class View {
     
   }
 
-  renderMessage() {
-    let message = document.getElementById('message');
-    let content = "Sample Message";
-    message.innerHTML = content;
-    setTimeout(()=>{
-      message.innerHTML = "Use the WSAD or arrow keys to move!"
-      // state = false;
-    }, 4000);
-    
-  }
+  
 }
 
 export default View;
