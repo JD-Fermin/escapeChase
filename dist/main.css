@@ -47,9 +47,16 @@ body {
   height: 100px;
   padding: 20px;
   border: 2px solid grey;
+ 
+}
+
+#main-text p{
+  white-space: pre-wrap;
 }
 
 .menu-list {
   text-align: center;
 }
+
+
 

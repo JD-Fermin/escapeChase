@@ -33,7 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (event.code === 'KeyE' && testPlayer.collided) {
       flag = true;
-      Utils.renderMessage(testPlayer.victim.message);
+      Utils.renderMessage(testPlayer.victim);
+      if(!testPlayer.items.includes(testPlayer.victim.item)){
+        testPlayer.items.push(testPlayer.victim.item);
+        testPlayer.victim.message = "There's nothing here....";
+      } 
+      console.log(testPlayer.items);
       setTimeout(() => {
         flag = false
       }, 4000);
@@ -44,7 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
       testPlayer.move(testPlayer.convertKeytoDir(event.code), testView, true);
       console.log(testPlayer.collided, testPlayer.victim);
       testView.draw();
-      // window.requestAnimationFrame(testView.draw);
+      
+      
+      
     }
     
     // testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);

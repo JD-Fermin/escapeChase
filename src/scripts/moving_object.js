@@ -5,6 +5,7 @@ class MovingObject {
     this.radius = attributes['radius'];
     this.collided = false;
     this.victim = null;
+    this.items = [];
   }
 
   draw(ctx) {

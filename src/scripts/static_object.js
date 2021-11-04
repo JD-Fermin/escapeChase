@@ -4,7 +4,8 @@ class StaticObject {
     this.width = attributes['width'];
     this.height = attributes['height'];
     this.color = attributes['color'];
-    this.message = attributes['message']
+    this.message = attributes['message'];
+    this.item = attributes['item'];
   }
 
   draw(ctx) {
@@ -12,6 +13,8 @@ class StaticObject {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
   }
+
+  
 }
 
 export default StaticObject;

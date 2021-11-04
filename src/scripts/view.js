@@ -9,6 +9,7 @@ class View {
     this.objs = [];
     this.addObjects();
     this.draw();
+    // window.requestAnimationFrame(this.draw);
     // this.player.draw(ctx);
     
   }
@@ -32,7 +33,9 @@ class View {
     for (let i = 0; i < this.objs.length; i++) {
       this.objs[i].draw(this.ctx);  
     }
-    
+    requestAnimationFrame(() =>{
+      this.draw();
+    });
   }
 
   
