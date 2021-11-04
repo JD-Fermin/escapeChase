@@ -58,5 +58,13 @@ body {
   text-align: center;
 }
 
+.menu-list li:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+.menu-list li:first-child {
+  border-top: 3px dashed black;
+}
 
 

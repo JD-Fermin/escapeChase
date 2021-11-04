@@ -16,8 +16,8 @@ class View {
 
   addObjects() {
     let i = 0;
-    while (this.objs.length < Utils.levels[1].length) {
-      this.objs.push(new StaticObject(Utils.levels[1][i]));
+    while (this.objs.length < Utils.levels[1].objects.length) {
+      this.objs.push(new StaticObject(Utils.levels[1].objects[i]));
       i++;
     }
   }
