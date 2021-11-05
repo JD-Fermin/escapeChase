@@ -4,6 +4,9 @@
 
 Escape Chase! is a classic 2D room escape game. The player will solve puzzles in order to get out of the current room. The player would progress until they beat the final room. As the difficulty increases, someone might chase the player while solving the puzzles.
 
+## Link
+https://jd-fermin.github.io/escapeChase/
+
 ## Functionality & MVPs
 
 In Escape Chase!, users will be able to:
