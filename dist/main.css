@@ -4,7 +4,7 @@
 .title-header {
   text-align: center;
   color: red;
-  font-family: 'Creepster', cursive;
+  font-family: "Creepster", cursive;
   font-size: 48px;
   padding: 50px;
 }
@@ -20,18 +20,16 @@ body {
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   font-size: 32px;
-
 }
 .main-body {
   display: flex;
   justify-content: space-between;
 }
 
-
-
-#menu, #nav-links {
+#menu,
+#nav-links {
   background: red;
   border: 2px solid grey;
   width: 200px;
@@ -47,10 +45,9 @@ body {
   height: 100px;
   padding: 20px;
   border: 2px solid grey;
- 
 }
 
-#main-text p{
+#main-text p {
   white-space: pre-wrap;
 }
 
@@ -67,4 +64,22 @@ body {
   border-top: 3px dashed black;
 }
 
+#game-container {
+  position: relative;
+  height: 400px;
+  width: 800px;
+}
 
+#game-box {
+  left: 0;
+  top: 0;
+  z-index: 0;
+  position: absolute;
+}
+
+#game-box-2 {
+  left: 0;
+  top: 0;
+  z-index: 1;
+  position: absolute;
+}

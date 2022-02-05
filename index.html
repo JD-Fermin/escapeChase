@@ -1,48 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./src/styles/reset.css">
-  <link rel="stylesheet" href="./dist/main.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-  <script src="./dist/main.js"></script>
-  <title>Escape Chase!</title>
-</head>
-<body>
-  <header class="title-header">
-    <h1>Escape Chase!</h1>
-  </header>
- 
-  <div class="main">
-    <div class="main-body">
-      <div id="nav-links">
-        <ul> You can find me in:
-          <li>
-            <a href="https://github.com/JD-Fermin">
-              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="logo">
-              Github
-            </a>
-          </li>
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/reset.css" />
+    <link rel="stylesheet" href="./dist/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Creepster&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./dist/main.js"></script>
+    <title>Escape Chase!</title>
+  </head>
+  <body>
+    <header class="title-header">
+      <h1>Escape Chase!</h1>
+    </header>
+
+    <div class="main">
+      <div class="main-body">
+        <div id="nav-links">
+          <ul>
+            You can find me in:
+            <li>
+              <a href="https://github.com/JD-Fermin">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                  alt="logo"
+                />
+                Github
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="game-container">
+          <canvas id="game-box" width="800" height="400"></canvas>
+          <canvas id="game-box-2" width="800" height="400"></canvas>
+        </div>
+
+        <div id="menu">
+          <ul class="menu-list">
+            Menu
+            <li id="resume">Resume</li>
+            <li id="pause">Pause</li>
+            <li id="reset">Reset</li>
+          </ul>
+        </div>
       </div>
-      <canvas id="game-box" width="448" height="448"></canvas>
-      <div id="menu">
-        <ul class="menu-list"> Menu
-          <li id="resume">Resume</li>
-          <li id="pause">Pause</li>
-          <li id="reset">Reset</li>
-        </ul>
+
+      <div id="main-text">
+        <p id="message">
+          Use the WSAD or arrow keys to move and E to interact!
+        </p>
       </div>
     </div>
-    
-    <div id="main-text">
-      <p id="message">Use the WSAD or arrow keys to move and E to interact!</p>
-    </div>
-  </div>
-</body>
+  </body>
 </html>
