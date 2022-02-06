@@ -3,7 +3,6 @@ class MovingObject {
   constructor(ctx) {
     this.ctx = ctx;
     this.pos = [240, 160];
-    this.mapPos = [10, 15];
     this.canvas = document.getElementById('game-box')
   }
 
@@ -56,15 +55,15 @@ class MovingObject {
     }
   }
 
-  move(dir) {
+  move(dir, view) {
     let dx = 16 * dir[0];
     let dy = 16 * dir[1];
-    
+    if (!Utils.detectCollision(view, [this.pos[0] + dx, this.pos[1] + dy])) {
       this.pos[0] += dx;
       this.pos[1] += dy;
 
-      this.mapPos[0] += dir[1];
-      this.mapPos[1] += dir[0];
+    }
+      
 
       
     

@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
     
     if (flag === false){
-      testPlayer.move(testPlayer.convertKeytoDir(event.code));
+      testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);
       requestAnimationFrame(() => testView.draw())
     }
     

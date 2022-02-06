@@ -1,6 +1,9 @@
 export const Utils = {
-  detectCollision: (view, player) => {
-    
+  detectCollision: (view, pos) => {
+    let updated = [pos[0]/16, pos[1]/16];
+    let index = (47 * updated[1]) + updated[0]
+    const objs = [0, 78, 79, 80, 228, 229, 244, 245, 230, 231, 246, 247, 216, 217, 218, 232, 233, 234, 248, 249, 250, 219, 220, 221, 235, 236, 237, 251, 252, 253, 142, 143]
+    return view.mapLayer1[index] !== 81 || !objs.includes(view.mapLayer2[index])
   },
   levels: {
     1: {objects: [{pos: [5, 97], width: 40, height: 200, color: 'pink', message: 'You found a screwdriver!', item: 'screwdriver'},
