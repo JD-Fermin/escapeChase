@@ -3,7 +3,8 @@ class MovingObject {
   constructor(ctx) {
     this.ctx = ctx;
     this.pos = [240, 160];
-    this.canvas = document.getElementById('game-box')
+    this.canvas = document.getElementById('game-box');
+
   }
 
   draw() {
