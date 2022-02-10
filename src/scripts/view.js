@@ -199,7 +199,7 @@ class View {
       }
     };
     this.addObjects();
-    this.player.draw()
+    this.player.draw(this.player.currDir)
   }
 }
 

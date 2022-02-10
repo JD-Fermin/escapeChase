@@ -6,107 +6,101 @@ document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
   let canvas2 = document.getElementById("game-box-2");
   let ctx = canvas.getContext("2d");
-  let ctx2 = canvas2.getContext('2d');
+  let ctx2 = canvas2.getContext("2d");
   let testPlayer = new MovingObject(ctx);
   let paused = false;
-  
+
   let testView = new View(ctx2, ctx, testPlayer);
   let flag = false;
-  const objs = [190, 206, 192, 208, 84, 225, 241, 15, 16, 31, 32, 47, 48, 94, 95, 110, 111, 126, 127, 156, 157, 172, 173, 226, 227, 242, 243, 163, 164, 179, 180, 158, 159, 160, 174, 175, 176];
-  // console.log(Utils.findAllIndices(testView.mapLayer2, objs))
   let objects = [
     {
       tiles: [190, 206],
       message: "This is a cabinet.",
-      pos: [568, 615]
+      pos: [568, 615],
     },
     {
       tiles: [192, 208],
       message: "This is another cabinet.",
-      pos: [569, 616]
+      pos: [569, 616],
     },
     {
       tiles: [84],
       message: "This is a trash can.",
-      pos: [897]
+      pos: [897],
     },
     {
       tiles: [225, 241],
       message: "This is a toilet with a turd.",
-      pos: [372, 419]
+      pos: [372, 419],
     },
     {
       tiles: [15, 16, 31, 32, 47, 48],
       message: "This is a bed.",
-      pos: [302, 303, 349, 350, 396, 397]
+      pos: [302, 303, 349, 350, 396, 397],
     },
     {
       tiles: [15, 16, 31, 32, 47, 48],
       message: "This is a bed.",
-      pos: [317, 318, 364, 365, 411, 412]
+      pos: [317, 318, 364, 365, 411, 412],
     },
     {
       tiles: [94, 95, 110, 111, 126, 127],
       message: "This is a bookshelf",
-      pos: [219, 220, 266, 267, 313, 314]
+      pos: [219, 220, 266, 267, 313, 314],
     },
     {
       tiles: [94, 95, 110, 111, 126, 127],
       message: "This is a bookshelf",
-      pos: [248, 249, 295, 296, 342, 343]
+      pos: [248, 249, 295, 296, 342, 343],
     },
     {
       tiles: [156, 157, 172, 173],
       message: "This is a fridge.",
-      pos: [573, 574, 620, 621]
+      pos: [573, 574, 620, 621],
     },
     {
       tiles: [226, 227, 242, 243],
       message: "The sink seems to be out.",
-      pos: [369, 370, 416, 417]
+      pos: [369, 370, 416, 417],
     },
     {
       tiles: [163, 164, 179, 180],
       message: "The TV seems to be displaying something.",
-      pos: [310, 311, 357, 358]
+      pos: [310, 311, 357, 358],
     },
     {
       tiles: [158, 159, 160, 174, 175, 176],
       message: "This sink seems to be working fine...",
-      pos: [570, 571, 572, 617, 618, 619]
-    }
-  ]
+      pos: [570, 571, 572, 617, 618, 619],
+    },
+  ];
 
-  let updatedObjects = objects.map(object => {
-    return new StaticObject(object)
+  let updatedObjects = objects.map((object) => {
+    return new StaticObject(object);
   });
 
-
-  let reset = document.getElementById('reset');
+  let reset = document.getElementById("reset");
   reset.onclick = (e) => {
     e.preventDefault();
     location.reload();
   };
 
-  let pause = document.getElementById('pause');
+  let pause = document.getElementById("pause");
   pause.onclick = (e) => {
     e.preventDefault();
     paused = true;
-    alert('You paused the game!');
-    
+    alert("You paused the game!");
   };
 
-  let resume = document.getElementById('resume');
+  let resume = document.getElementById("resume");
   resume.onclick = (e) => {
     e.preventDefault();
     if (paused) {
-      alert('You resumed the game!');
+      alert("You resumed the game!");
       paused = false;
-    } 
-    
+    }
   };
 
-  
   requestAnimationFrame(main);
   let startTime;
   let gTime;
@@ -118,55 +112,34 @@ document.addEventListener("DOMContentLoaded", () => {
     gTime = time - startTime;
     // ctx.clearRect(0, 0, canvas.width, canvas.height)
     testView.draw();
-    
+
     requestAnimationFrame(main);
   }
-  window.addEventListener("keydown", (event) => {
-   
+
+  function handleKeyDown(event) {
     event.preventDefault();
     if (paused) return;
-    if (event.code === 'KeyE' && Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer)) {
-      
+    if (
+      event.code === "KeyE" &&
+      Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer)
+    ) {
       flag = true;
-
-      Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).renderMessage()
-
-    //   Utils.renderMessage(testPlayer.victim);
-      // if(!testPlayer.items.includes(testPlayer.victim.item)){
-      //   testPlayer.items.push(testPlayer.victim.item);
-      //   if (Utils.levels[1].itemOrder[testPlayer.items.length - 1] !== testPlayer.items[testPlayer.items.length - 1]) {
-      //     testPlayer.items.pop();
-      //     let temp = testPlayer.victim.message;
-      //     testPlayer.victim.message = testPlayer.victim.item === 'success' ? "You need something else to open the door!" : 'You need something else to get this item!';
-      //     Utils.renderMessage(testPlayer.victim);
-      //     testPlayer.victim.message = temp;
-      //   } else {
-      //     testPlayer.victim.message = "There's nothing here....";
-      //   }
-          
-        
-        
-      // } 
-      // console.log(testPlayer.items);
-      // if(testPlayer.items[testPlayer.items.length - 1] === 'success'){
-      //   Utils.renderMessage(testPlayer.victim);
-      //   alert('You escaped!');
-      //   location.reload();
-      // }
+      window.removeEventListener('keydown', handleKeyDown);
+      Utils.detectPlayerObjectInteraction(
+        updatedObjects,
+        testPlayer
+      ).renderMessage();
 
       setTimeout(() => {
-        flag = false
-      }, 4000);
+        flag = false;
+        window.addEventListener("keydown", handleKeyDown)
+      }, 3000);
     }
-    
-    if (flag === false){
-      testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);
-      requestAnimationFrame(() => testView.draw())
-    }
-    
-    
-  });
 
-  
-  
-})
+    if (flag === false) {
+      testPlayer.move(testPlayer.convertKeytoDir(event.code), testView);
+      // requestAnimationFrame(() => testView.draw())
+    }
+  };
+  window.addEventListener("keydown", handleKeyDown)
+});
