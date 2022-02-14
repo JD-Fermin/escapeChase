@@ -4,6 +4,7 @@ class StaticObject {
     this.tiles = attributes['tiles'];
     this.pos = attributes['pos']
     this.message = attributes['message'];
+    this.playerFace = attributes['playerFace'];
   }
 
   detectPlayer(player) {
@@ -34,7 +35,7 @@ class StaticObject {
     animate();
     setTimeout(()=>{
       message.innerHTML = "Use the WSAD or arrow keys to move and E to interact!"
-    }, 3000);
+    }, 3500);
   }
 }
 

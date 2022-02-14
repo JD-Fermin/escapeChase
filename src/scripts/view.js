@@ -127,15 +127,19 @@ class View {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0,
     ];
-
+    this.tileAtlas = new Image();
+    this.tileAtlas.src = "./assets/tileset.png";
+    this.tileAtlas.onload = () => {
+      this.draw()
+    }
   }
 
   addObjects() {
     // let canvas = document.getElementById('game-box-2');
     // this.ctx2.clearRect(0,0, canvas.width, canvas.height);
-    let tileAtlas = new Image();
-    tileAtlas.src = "./assets/tileset.png";
-    tileAtlas.onload = () => {
+    // let tileAtlas = new Image();
+    // tileAtlas.src = "./assets/tileset.png";
+    // tileAtlas.onload = () => {
       let mapIndex = 0;
       let sourceX = 0;
       let sourceY = 0;
@@ -148,7 +152,7 @@ class View {
             sourceY = Math.floor(tileVal / this.atlasCol) * this.tileSize;
             sourceX = (tileVal % this.atlasCol) * this.tileSize;
             this.ctx.drawImage(
-              tileAtlas,
+              this.tileAtlas,
               sourceX,
               sourceY,
               this.tileSize,
@@ -161,7 +165,7 @@ class View {
           }
           mapIndex++;
         }
-      }
+      // }
     };
     
     
@@ -169,9 +173,9 @@ class View {
 
   draw() {
     
-    let tileAtlas = new Image();
-    tileAtlas.src = "./assets/tileset.png";
-    tileAtlas.onload = () => {
+    // let tileAtlas = new Image();
+    // tileAtlas.src = "./assets/tileset.png";
+    // tileAtlas.onload = () => {
       let mapIndex = 0;
       let sourceX = 0;
       let sourceY = 0;
@@ -183,7 +187,7 @@ class View {
             sourceY = Math.floor(tileVal / this.atlasCol) * this.tileSize;
             sourceX = (tileVal % this.atlasCol) * this.tileSize;
             this.ctx.drawImage(
-              tileAtlas,
+              this.tileAtlas,
               sourceX,
               sourceY,
               this.tileSize,
@@ -196,7 +200,7 @@ class View {
           }
           mapIndex++;
         }
-      }
+      // }
     };
     this.addObjects();
     this.player.draw(this.player.currDir)
