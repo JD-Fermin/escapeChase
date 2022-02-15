@@ -1,12 +1,9 @@
 import { Utils } from "./utils.js";
 const FACE_DOWN = 0;
-const FACE_UP = 3;
-const FACE_LEFT = 6;
-const FACE_RIGHT = 9;
-const DOWN_MOVES = [0, 1, 0, 2];
-const UP_MOVES = [3, 4, 3, 5];
-const LEFT_MOVES = [6, 7, 6, 8];
-const RIGHT_MOVES = [9, 10, 9, 11];
+const FACE_UP = 4;
+const FACE_LEFT = 8;
+const FACE_RIGHT = 12;
+
 class MovingObject {
   constructor(ctx) {
     this.ctx = ctx;
@@ -14,6 +11,7 @@ class MovingObject {
     this.canvas = document.getElementById("player-box");
     this.currDir = FACE_DOWN;
     this.prevDir = FACE_DOWN;
+    this.currStep = 'left';
   }
 
   draw(frameX) {
@@ -41,7 +39,7 @@ class MovingObject {
         );
       };
 
-      requestAnimationFrame(() => drawFrame(frameX));
+      drawFrame(frameX);
     };
   }
 
@@ -74,27 +72,44 @@ class MovingObject {
     let dy = 16 * dir[1];
     if (this.currDir !== this.prevDir) {
       this.prevDir = this.currDir;
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.draw(this.currDir);
       return;
     }
     if (!Utils.detectCollision(view, [this.pos[0] + dx, this.pos[1] + dy])) {
-      this.pos[0] += dx;
-      this.pos[1] += dy;
-      let startTime;
-      let gTime;
+      this.pos[0] += dx / 2;
+      this.pos[1] += dy / 2;
 
-      const main = (time) => {
-        if (startTime === undefined) {
-          startTime = time;
-        }
-        gTime = time - startTime;
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      let step = this.currStep === 'left' ? this.currDir + 1 : this.currDir + 3
+      this.currStep = this.currStep === 'left' ? 'right' : 'left';
+      this.draw(step);
+      
+      setTimeout(() => {
+        this.pos[0] += dx / 2;
+        this.pos[1] += dy / 2;
+        // console.log('after', this.pos)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.currDir);
+      }, 200);
 
-        requestAnimationFrame(main);
-      };
-      requestAnimationFrame(main);
+      // console.log('before', this.pos)
+
+      // let startTime;
+      // let gTime;
+
+      // const main = (time) => {
+      //   // if (startTime === undefined) {
+      //   //   startTime = time;
+      //   // }
+      // gTime = time - startTime;
+
+      //   requestAnimationFrame(main);
     }
+
+    // requestAnimationFrame(main);
   }
+  // }
 }
 
 export default MovingObject;
