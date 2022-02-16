@@ -77,6 +77,7 @@ class MovingObject {
       return;
     }
     if (!Utils.detectCollision(view, [this.pos[0] + dx, this.pos[1] + dy])) {
+      
       this.pos[0] += dx / 2;
       this.pos[1] += dy / 2;
 
@@ -91,25 +92,14 @@ class MovingObject {
         // console.log('after', this.pos)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.currDir);
-      }, 200);
+      }, 90);
 
-      // console.log('before', this.pos)
-
-      // let startTime;
-      // let gTime;
-
-      // const main = (time) => {
-      //   // if (startTime === undefined) {
-      //   //   startTime = time;
-      //   // }
-      // gTime = time - startTime;
-
-      //   requestAnimationFrame(main);
+      
     }
 
-    // requestAnimationFrame(main);
+  
   }
-  // }
+
 }
 
 export default MovingObject;

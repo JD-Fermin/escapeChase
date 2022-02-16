@@ -33,6 +33,7 @@ body {
   background: red;
   border: 2px solid grey;
   width: 200px;
+  display:none;
 }
 
 #nav-links img {
@@ -45,6 +46,8 @@ body {
   height: 100px;
   padding: 20px;
   border: 2px solid grey;
+  display:none;
+
 }
 
 #main-text p {

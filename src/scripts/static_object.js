@@ -1,10 +1,9 @@
-
 class StaticObject {
   constructor(attributes) {
-    this.tiles = attributes['tiles'];
-    this.pos = attributes['pos']
-    this.message = attributes['message'];
-    this.playerFace = attributes['playerFace'];
+    this.tiles = attributes["tiles"];
+    this.pos = attributes["pos"];
+    this.message = attributes["message"];
+    this.playerFace = attributes["playerFace"];
   }
 
   detectPlayer(player) {
@@ -17,7 +16,12 @@ class StaticObject {
       let bottom = tile + 47 < 1128 ? tile + 47 : null;
       let left = tile % 47 !== 0 ? tile - 1 : null;
       let right = (tile + 1) % 47 !== 0 ? tile + 1 : null;
-      if (index === top || index === bottom || index === left || index === right) {
+      if (
+        index === top ||
+        index === bottom ||
+        index === left ||
+        index === right
+      ) {
         return true;
       }
     }
@@ -25,17 +29,22 @@ class StaticObject {
   }
 
   renderMessage() {
-    let message = document.getElementById('message');
+    let message = document.getElementById("message");
+    document.getElementById("main-text").style.display = "block";
     message.innerHTML = "";
     let content = this.message.split("");
     let animate = () => {
-      let running = setTimeout(animate, 90)
-      content.length > 0 ? message.innerHTML += content.shift() : clearTimeout(running)
-    }
+      let running = setTimeout(animate, 90);
+      content.length > 0
+        ? (message.innerHTML += content.shift())
+        : clearTimeout(running);
+    };
     animate();
-    setTimeout(()=>{
-      message.innerHTML = "Use the WSAD or arrow keys to move and E to interact!"
-    }, 3500);
+    setTimeout(() => {
+      message.innerHTML =
+        "Use the WSAD or arrow keys to move and E to interact!";
+      document.getElementById("main-text").style.display = "none";
+    }, (((content.length / 3500) * 100) * 3500) + 1000);
   }
 }
 
