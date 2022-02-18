@@ -4,6 +4,7 @@ class StaticObject {
     this.pos = attributes["pos"];
     this.message = attributes["message"];
     this.playerFace = attributes["playerFace"];
+    this.puzzle = attributes["puzzle"];
   }
 
   detectPlayer(player) {
@@ -47,5 +48,7 @@ class StaticObject {
     }, (((content.length / 3500) * 100) * 3500) + 1000);
   }
 }
+
+
 
 export default StaticObject;

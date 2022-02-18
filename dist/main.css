@@ -93,3 +93,30 @@ body {
   z-index: 2;
   position: absolute;
 }
+
+#puzzle {
+  left: 0;
+  top: 0;
+  z-index: 3;
+  position: absolute;
+  background: grey;
+  display: flex;
+  width: 800px;
+  height: 400px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid black;
+
+  /* display: none; */
+}
+
+.letter-input {
+  border-radius: 50%;
+  background: green;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  border: 2px solid black;
+}

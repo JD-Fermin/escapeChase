@@ -2,6 +2,7 @@ import MovingObject from "./scripts/moving_object";
 import StaticObject from "./scripts/static_object";
 import { Utils } from "./scripts/utils";
 import View from "./scripts/view";
+import { update } from "./scripts/puzzle"
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: "There is a little box here.",
       pos: [568, 615],
       playerFace: [4],
+      puzzle: true
     },
     {
       tiles: [192, 208],
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       tiles: [84],
-      message: "There is a receipt in the trash.",
+      message: "There is a note in the trash that says: x5xxx4.",
       pos: [897],
       playerFace: [0, 8],
     },
@@ -129,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (event.code === "Escape") {
       let menu = document.getElementById("menu")
-      menu.style.display = menu.style.display === "none" ? "block" : "sdadadanone";
+      menu.style.display = menu.style.display === "none" ? "block" : "none";
     }
 
 
@@ -151,9 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
         testPlayer
       ).renderMessage();
 
+      if (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).puzzle) {
+        update();
+        
+      }
+
       setTimeout(() => {
         flag = false;
         window.addEventListener("keydown", handleKeyDown);
+        // puzzle.style.display = "none";
       }, 3500);
     }
 
