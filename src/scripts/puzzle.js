@@ -1,4 +1,5 @@
-export const Puzzle = function _Puzzle() {
+export const Puzzle = function _Puzzle(player) {
+    Puzzle.player = player;
   return `
     <div id="puzzle">
               <div class="letter-input" index=0>${_Puzzle.state.code[0]}</div>
@@ -12,15 +13,17 @@ export const Puzzle = function _Puzzle() {
 };
 
 Puzzle.state = {
-  code: ["A", "A", "A", "A", "A", "A"],
+  // code: ["R", "5", "Y", "0", "A", "4"],
+    code: ["A", "A", "A", "A", "A", "A"],
   changeCode: (index, value) => {
     setState(() => {
-      Puzzle.state.code[index] = value;
+      Puzzle.state.code[index] = value; 
     });
   },
   checkCode: () => {
     if (Puzzle.state.code.join("") === "R5Y0J4") {
-      console.log("success");
+        Puzzle.player.hasKey = true;
+      document.getElementById("puzzle").style.display = "none";
     }
   },
 };
@@ -40,12 +43,12 @@ const addListen = () => {
   });
 };
 
-export const update = () => {
-  document.getElementById("puzzle-container").innerHTML = Puzzle();
+export const update = (player) => {
+  document.getElementById("puzzle-container").innerHTML = Puzzle(player);
   addListen();
 };
 
 const setState = (callback) => {
   callback();
-  update();
+  update(Puzzle.player);
 };

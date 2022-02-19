@@ -5,6 +5,7 @@ class StaticObject {
     this.message = attributes["message"];
     this.playerFace = attributes["playerFace"];
     this.puzzle = attributes["puzzle"];
+    this.keyReq = attributes["keyReq"];
   }
 
   detectPlayer(player) {

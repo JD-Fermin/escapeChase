@@ -12,6 +12,7 @@ class MovingObject {
     this.currDir = FACE_DOWN;
     this.prevDir = FACE_DOWN;
     this.currStep = 'left';
+    this.hasKey = false;
   }
 
   draw(frameX) {

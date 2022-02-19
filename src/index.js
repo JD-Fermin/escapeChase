@@ -2,7 +2,7 @@ import MovingObject from "./scripts/moving_object";
 import StaticObject from "./scripts/static_object";
 import { Utils } from "./scripts/utils";
 import View from "./scripts/view";
-import { update } from "./scripts/puzzle"
+import { update, Puzzle } from "./scripts/puzzle"
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: "This is the door.",
       pos: [994],
       playerFace: [0],
+      keyReq: true
     },
   ];
 
@@ -154,8 +155,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ).renderMessage();
 
       if (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).puzzle) {
-        update();
-        
+        update(testPlayer);
+      }
+
+      if (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).keyReq && testPlayer.hasKey) {
+        alert("You cleared the game!")
       }
 
       setTimeout(() => {
