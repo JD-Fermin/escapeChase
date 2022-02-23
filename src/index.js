@@ -2,7 +2,7 @@ import MovingObject from "./scripts/moving_object";
 import StaticObject from "./scripts/static_object";
 import { Utils } from "./scripts/utils";
 import View from "./scripts/view";
-import { update, Puzzle } from "./scripts/puzzle";
+import { addListen, Puzzle } from "./scripts/puzzle";
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -161,12 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (
         interactedObj.puzzle
       ) {
-        update(testPlayer);
+        document.getElementById("puzzle-container").innerHTML = Puzzle(testPlayer);
       }
 
       setTimeout(() => {
         flag = false;
-
+        if (interactedObj.puzzle) addListen();
         window.addEventListener("keydown", handleKeyDown);
       }, (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).message.length / 3500) * 100 * 3500 + 1000);
     }

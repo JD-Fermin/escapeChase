@@ -1,3 +1,4 @@
+import { Utils } from "./utils"
 export const Puzzle = function _Puzzle(player) {
     Puzzle.player = player;
   return `
@@ -23,11 +24,12 @@ Puzzle.state = {
     if (Puzzle.state.code.join("") === "R5Y0J4") {
         Puzzle.player.hasKey = true;
       document.getElementById("puzzle").style.display = "none";
+      Utils.renderMessage("You got a key!");
     }
   },
 };
 
-const addListen = () => {
+export const addListen = () => {
   const chars = document.querySelectorAll(".letter-input");
   const cont = document.getElementById("puzzle");
   cont.addEventListener("click", (event) => {
