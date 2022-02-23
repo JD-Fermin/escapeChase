@@ -2,7 +2,7 @@ import MovingObject from "./scripts/moving_object";
 import StaticObject from "./scripts/static_object";
 import { Utils } from "./scripts/utils";
 import View from "./scripts/view";
-import { update, Puzzle } from "./scripts/puzzle"
+import { update, Puzzle } from "./scripts/puzzle";
 
 document.addEventListener("DOMContentLoaded", () => {
   let canvas = document.getElementById("game-box");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: "There is a little box here.",
       pos: [568, 615],
       playerFace: [4],
-      puzzle: true
+      puzzle: true,
     },
     {
       tiles: [192, 208],
@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       tiles: [84],
-      message: "There is a note in the trash that says: x5xxx4.",
+      message: "There is a note in the trash that says: Rxxxx4.",
       pos: [897],
       playerFace: [0, 8],
     },
     {
       tiles: [225, 241],
-      message: "This is a toilet with a turd.",
+      message: "This is a toilet.",
       pos: [372, 419],
       playerFace: [4],
     },
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       message: "This is the door.",
       pos: [994],
       playerFace: [0],
-      keyReq: true
+      keyReq: true,
     },
   ];
 
@@ -129,44 +129,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function handleKeyDown(event) {
     event.preventDefault();
-    
+
     if (event.code === "Escape") {
-      let menu = document.getElementById("menu")
+      let menu = document.getElementById("menu");
       menu.style.display = menu.style.display === "none" ? "block" : "none";
     }
 
-
-
     if (paused) return;
 
+    let interactedObj = Utils.detectPlayerObjectInteraction(
+      updatedObjects,
+      testPlayer
+    );
     if (
       event.code === "KeyE" &&
-      Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer) &&
-      Utils.detectPlayerObjectInteraction(
-        updatedObjects,
-        testPlayer
-      ).playerFace.includes(testPlayer.currDir)
+      interactedObj &&
+      interactedObj.playerFace.includes(testPlayer.currDir)
     ) {
       flag = true;
       window.removeEventListener("keydown", handleKeyDown);
-      Utils.detectPlayerObjectInteraction(
-        updatedObjects,
-        testPlayer
-      ).renderMessage();
+      if (interactedObj.keyReq && testPlayer.hasKey) {
+        interactedObj.message = "You have escaped the room!";
 
-      if (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).puzzle) {
-        update(testPlayer);
+        Utils.renderMessage(interactedObj.message);
+
+        return;
       }
 
-      if (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).keyReq && testPlayer.hasKey) {
-        alert("You cleared the game!")
+      Utils.renderMessage(interactedObj.message);
+
+      if (
+        interactedObj.puzzle
+      ) {
+        update(testPlayer);
       }
 
       setTimeout(() => {
         flag = false;
+
         window.addEventListener("keydown", handleKeyDown);
-        // puzzle.style.display = "none";
-      }, 3500);
+      }, (Utils.detectPlayerObjectInteraction(updatedObjects, testPlayer).message.length / 3500) * 100 * 3500 + 1000);
     }
 
     if (flag === false) {

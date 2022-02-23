@@ -30,26 +30,23 @@ class StaticObject {
     return false;
   }
 
-  renderMessage() {
-    let message = document.getElementById("message");
-    document.getElementById("main-text").style.display = "block";
-    message.innerHTML = "";
-    let content = this.message.split("");
-    let animate = () => {
-      let running = setTimeout(animate, 90);
-      content.length > 0
-        ? (message.innerHTML += content.shift())
-        : clearTimeout(running);
-    };
-    animate();
-    setTimeout(() => {
-      message.innerHTML =
-        "Use the WSAD or arrow keys to move and E to interact!";
-      document.getElementById("main-text").style.display = "none";
-    }, (((content.length / 3500) * 100) * 3500) + 1000);
-  }
+  // renderMessage() {
+  //   let message = document.getElementById("message");
+  //   document.getElementById("main-text").style.display = "block";
+  //   message.innerHTML = "";
+  //   let content = this.message.split("");
+  //   let animate = () => {
+  //     let running = setTimeout(animate, 90);
+  //     content.length > 0
+  //       ? (message.innerHTML += content.shift())
+  //       : clearTimeout(running);
+  //   };
+  //   animate();
+  //   setTimeout(() => {
+  //     message.innerHTML = "";
+  //     document.getElementById("main-text").style.display = "none";
+  //   }, (content.length / 3500) * 100 * 3500 + 1000);
+  // }
 }
-
-
 
 export default StaticObject;

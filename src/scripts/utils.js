@@ -22,6 +22,24 @@ export const Utils = {
     return null;
   },
 
+  renderMessage: (str) => {
+    let message = document.getElementById("message");
+    document.getElementById("main-text").style.display = "block";
+    message.innerHTML = "";
+    let content = str.split("");
+    let animate = () => {
+      let running = setTimeout(animate, 90);
+      content.length > 0
+        ? (message.innerHTML += content.shift())
+        : clearTimeout(running);
+    };
+    animate();
+    setTimeout(() => {
+      message.innerHTML = "";
+      document.getElementById("main-text").style.display = "none";
+    }, (content.length / 3500) * 100 * 3500 + 1000);
+  },
+
   findAllIndices: (arr, eleArr) => {
     let indices = {};
     for (let i = 0; i < eleArr.length; i++) {

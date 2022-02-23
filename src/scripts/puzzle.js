@@ -8,13 +8,12 @@ export const Puzzle = function _Puzzle(player) {
               <div class="letter-input" index=3>${_Puzzle.state.code[3]}</div>
               <div class="letter-input" index=4>${_Puzzle.state.code[4]}</div>
               <div class="letter-input" index=5>${_Puzzle.state.code[5]}</div>
-
             </div>`;
 };
 
 Puzzle.state = {
-  // code: ["R", "5", "Y", "0", "A", "4"],
-    code: ["A", "A", "A", "A", "A", "A"],
+  code: ["R", "5", "Y", "0", "I", "4"],
+    // code: ["A", "A", "A", "A", "A", "A"],
   changeCode: (index, value) => {
     setState(() => {
       Puzzle.state.code[index] = value; 
@@ -30,9 +29,16 @@ Puzzle.state = {
 
 const addListen = () => {
   const chars = document.querySelectorAll(".letter-input");
+  const cont = document.getElementById("puzzle");
+  cont.addEventListener("click", (event) => {
+    
+    cont.style.display = "none";
+  })
   const alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   chars.forEach((char) => {
     char.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation()
       const nextChar =
         alphaNum.indexOf(char.innerHTML) + 1 < 36
           ? alphaNum[alphaNum.indexOf(char.innerHTML) + 1]
