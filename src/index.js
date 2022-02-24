@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       tiles: [163, 164, 179, 180],
-      message: "The TV seems to be on channel RYJ.",
+      message: "The TV seems to be on channel R-Y-J.",
       pos: [310, 311, 357, 358],
       playerFace: [4],
     },
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       tiles: [132],
-      message: "This is the door.",
+      message: "This door seems to be locked.",
       pos: [994],
       playerFace: [0],
       keyReq: true,
@@ -132,7 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (event.code === "Escape") {
       let menu = document.getElementById("menu");
+      let links = document.getElementById("nav-links");
       menu.style.display = menu.style.display === "none" ? "block" : "none";
+      links.style.display = links.style.display === "none" ? "block" : "none";
     }
 
     if (paused) return;

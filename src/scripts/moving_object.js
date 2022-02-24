@@ -93,7 +93,7 @@ class MovingObject {
         // console.log('after', this.pos)
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.currDir);
-      }, 90);
+      }, 100);
 
       
     }

@@ -22,6 +22,7 @@ body {
   margin: 0 auto;
   font-family: "VT323", monospace;
   font-size: 32px;
+  align-items: center;
 }
 .main-body {
   display: flex;
@@ -46,12 +47,13 @@ body {
   height: 100px;
   padding: 20px;
   border: 2px solid grey;
-  display:none;
-
+  /* display:none; */
+ 
 }
 
 #main-text p {
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
+  text-align: center;
 }
 
 .menu-list {

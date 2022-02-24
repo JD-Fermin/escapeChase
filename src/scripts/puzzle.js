@@ -13,8 +13,8 @@ export const Puzzle = function _Puzzle(player) {
 };
 
 Puzzle.state = {
-  code: ["R", "5", "Y", "0", "I", "4"],
-    // code: ["A", "A", "A", "A", "A", "A"],
+  // code: ["R", "5", "Y", "0", "I", "4"],
+    code: ["A", "A", "A", "A", "A", "A"],
   changeCode: (index, value) => {
     setState(() => {
       Puzzle.state.code[index] = value; 
