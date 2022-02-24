@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       tiles: [163, 164, 179, 180],
-      message: "The TV seems to be displaying something.",
+      message: "The TV seems to be on channel RYJ.",
       pos: [310, 311, 357, 358],
       playerFace: [4],
     },
