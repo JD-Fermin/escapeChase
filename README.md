@@ -13,7 +13,7 @@ In Escape Chase!, users will be able to:
   - Use the keyboard to navigate the rooms and interact with the objects
   - Start, pause, and reset the game
   - Read the storyline
-  - Immerse themselves with audio
+ 
 
 In addition, this project will include:
   - A README file
@@ -32,7 +32,6 @@ In addition, this project will include:
 
 This project will implement:
  - The Canvas API to render the game
- - WebGL for animations
  - webpack to bundle the files
  - npm for managing dependencies
 
@@ -71,3 +70,5 @@ This project will implement:
   - Add killer for higher levels
   - Add more levels
   - Possibly a multi ended game with branching routes
+
+## Credits to Asset Bakery for the game assets
